@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Mate7助手</string>
+    <string name="dialog_title_accessibility_service">打开无障碍服务</string>
+
+
+    <string name="opened">已开启</string>
+    <string name="closed">已关闭</string>
+
+    <string name="utils_accessibility_service">Mate7助手 - 自动开关进入菜单</string>
+    <string name="cancel">取消</string>
+    <string name="done">完成</string>
+    <string name="install">安装</string>
+    <string name="next">下一步</string>
+    <string name="ok">确定</string>
+    <string name="installing">正在安装....</string>
+
+</resources>

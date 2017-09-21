@@ -1,3 +1,20 @@
 <resources>
     <string name="app_name">Mate7Utils</string>
+
+    <string name="install">Install</string>
+    <string name="installing">Installing…</string>
+    <string name="done">Done</string>
+    <string name="next">Next</string>
+    <string name="ok">OK</string>
+
+    <string name="cancel">cancel</string>
+    <string name="title_activity_main2" translatable="false">Main2Activity</string>
+
+    <string name="opened">Opened</string>
+    <string name="closed">Closed</string>
+
+    <string name="utils_accessibility_service">Mate7 Tools - Auto switch Dev Options</string>
+
+    <string name="dialog_title_accessibility_service">Open Accessibility Service</string>
+    <string name="dialog_content_accessibility_service" translatable="false">程序宝宝需要开启无障碍服务，则宝宝就能快速开关相关调试功能，从而节省操作时间。\n 请在接下来的页面点击 米5助手 并打开授权</string>
 </resources>
