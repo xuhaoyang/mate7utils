@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/Car"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
@@ -27,16 +28,35 @@
 
     <!--</android.support.v7.widget.LinearLayoutCompat>-->
 
-    <LinearLayout
+
+    <LinearLayout xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        android:orientation="vertical"
+        >
 
         <android.support.v7.widget.AppCompatButton
             android:id="@+id/btn_open_factory"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+
             android:text="打开工厂模式" />
+
+        <android.support.v7.widget.AppCompatButton
+            android:id="@+id/btn_on_liantong_4g"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            android:text="打开联通网络" />
+
+        <android.support.v7.widget.AppCompatButton
+            android:id="@+id/btn_on_auto"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            android:text="恢复移动电信网络" />
     </LinearLayout>
 
 
