@@ -36,6 +36,8 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     AppCompatButton btn_on_liantong_4g;
     @ViewById(R.id.btn_on_auto)
     AppCompatButton btn_on_auto;
+    @ViewById(R.id.btn_test)
+    AppCompatButton btn_test;
 
 
     private boolean isAccessibilityEnabled;
@@ -51,30 +53,41 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         btn_open_factory.setOnClickListener(this);
         btn_on_liantong_4g.setOnClickListener(this);
         btn_on_auto.setOnClickListener(this);
+        btn_test.setOnClickListener(this);
+
+        Toasty.Config.getInstance().tintIcon(true).setTextSize(12).apply();
+
     }
 
 
     @Override
     protected void onStart() {
         super.onStart();
-        isRoot = AppUtils.isAppRoot();
-        Toasty.Config.getInstance().tintIcon(true).setTextSize(12).apply();
+        if (!isRoot) {
+            isRoot = AppUtils.isAppRoot();
+            dismissProgressDialog();
+        }
         if (AppConfig.isAppFirstRun()) {
             AppConfig.overAppFirstRunStatus();
             guideOpenAccessibility();
         }
 
-        if (isRoot) {
+
+        isAccessibilityEnabled = BaseAccessibilityService.checkAccessibilityEnabled(this, UtilsAccessibility.class);
+
+        if (isRoot && !isAccessibilityEnabled) {
             openAccessibilityByRoot();
         }
-        isAccessibilityEnabled = BaseAccessibilityService.checkAccessibilityEnabled(this, UtilsAccessibility.class);
 
         if (AppConfig.isShowLog) {
             Toasty.info(this, "Mate7助手：" + isAccessibilityEnabled).show();
             btn_open_factory.setVisibility(View.VISIBLE);
+            btn_test.setVisibility(View.VISIBLE);
 
         } else {
             btn_open_factory.setVisibility(View.GONE);
+            btn_test.setVisibility(View.GONE);
+
         }
     }
 
@@ -110,18 +123,10 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     @Override
     public void onClick(View view) {
         Intent intent;
-
-        if (!isAccessibilityEnabled) {
-            guideOpenAccessibility();
-            return;
-        }
+        Toasty.normal(this, "执行中").show();
         switch (view.getId()) {
             case R.id.btn_open_factory:
                 try {
-//                    intent = new Intent();
-//                    ComponentName cn = new ComponentName("com.android.huawei.projectmenu", "com.android.huawei.projectmenu.ProjectMenuAct");
-//                    intent.setComponent(cn);
-//                    startActivity(intent);
                     if (isRoot) {
                         ShellUtils.execCmd("am start -n com.android.huawei.projectmenu/.ProjectMenuAct", true);
                     }
@@ -130,7 +135,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                 }
                 break;
             case R.id.btn_on_liantong_4g:
-
+                if (checkAccessibiltiy()) return;
 
                 try {
 
@@ -148,6 +153,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
 
             case R.id.btn_on_auto:
 
+                if (checkAccessibiltiy()) return;
                 try {
 
                     Item result = new Item(1, "AUTO", 1);
@@ -161,6 +167,17 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
 
                 break;
 
+            case R.id.btn_test:
+                showProgressDialog("测试Progressdialog");
+                break;
         }
+    }
+
+    private boolean checkAccessibiltiy() {
+        if (!isAccessibilityEnabled) {
+            guideOpenAccessibility();
+            return true;
+        }
+        return false;
     }
 }

@@ -1,6 +1,7 @@
 package hk.xhy.mate7utils.ui.base;
 
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
@@ -22,6 +23,7 @@ public abstract class BaseActivity extends hk.xhy.android.common.ui.BaseActivity
     protected String TAG = getClass().getSimpleName();
     protected BaseApplication application;
     protected SharedPreferences sp;
+    private ProgressDialog mProgressDialog;
 
 
     @Override
@@ -50,6 +52,25 @@ public abstract class BaseActivity extends hk.xhy.android.common.ui.BaseActivity
 
     protected void showToast(String msg) {
         ToastUtils.showShort(msg);
+    }
+
+    protected void showProgressDialog(int resId) {
+        showProgressDialog(getString(resId));
+    }
+
+    protected void showProgressDialog(String message) {
+        if (mProgressDialog == null) {
+            mProgressDialog = new ProgressDialog(this);
+        }
+        mProgressDialog.setCancelable(false);
+        mProgressDialog.setMessage(message);
+        mProgressDialog.show();
+    }
+
+    protected void dismissProgressDialog() {
+        if (mProgressDialog != null && mProgressDialog.isShowing()) {
+            mProgressDialog.dismiss();
+        }
     }
 
     /**
