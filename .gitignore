@@ -8,3 +8,6 @@
 /app/app-release.apk
 /captures
 .externalNativeBuild
+.idea/misc.xml
+.idea/vcs.xml
+
