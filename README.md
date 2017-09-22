@@ -3,8 +3,6 @@
 
 ![mate7Utils](https://img.shields.io/badge/mate7utils-1.0.0-brightgreen.svg) ![API](https://img.shields.io/badge/api-23%2B-brightgreen.svg) [![](https://img.shields.io/travis/rust-lang/rust.svg)]() [![](https://img.shields.io/badge/License-Apache%202.0-brightgreen.svg)]()
 
-### 框架介绍
-
 ## 使用基础
 * 针对电信定制机
 * Root权限(EMUI4.0.1解锁后Root)
